@@ -1,0 +1,28 @@
+POST http://localhost:8080/project
+Content-Type: application/json
+
+{
+  "name": "SpaceX"
+}
+
+###
+
+GET http://localhost:8080/project/1
+
+###
+
+POST http://localhost:8080/employee
+Content-Type: application/json
+
+{
+  "firstName": "Katarzyna",
+  "lastName": "Dieta",
+  "city": "Szczecin",
+  "projectId": "1"
+}
+
+###
+
+GET http://localhost:8080/employee
+
+###
