@@ -6,7 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import pl.altkom.springcloud.lab06.resilience4j.projectservice.client.EmployeeClient;
 import pl.altkom.springcloud.lab06.resilience4j.projectservice.controller.mapper.RequestMapper;
 import pl.altkom.springcloud.lab06.resilience4j.projectservice.controller.mapper.ResponseMapper;

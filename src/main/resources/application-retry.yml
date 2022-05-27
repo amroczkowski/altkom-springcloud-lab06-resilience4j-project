@@ -1,0 +1,28 @@
+server:
+  port: 8200
+spring:
+  application:
+    name: project-service
+  redis:
+    connect-timeout:
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+feign:
+  client:
+    config:
+      default:
+        connect-timeout: 5000
+        read-timeout: 30000
+resilience4j:
+  retry:
+    instances:
+      EmployeeClientgetProjectEmployeesLong:
+        max-retry-attempts: 3
+        wait-duration: 1s
