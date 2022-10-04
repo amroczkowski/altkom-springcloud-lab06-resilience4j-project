@@ -10,7 +10,8 @@ import io.github.resilience4j.retry.annotation.Retry;
 import pl.altkom.springcloud.lab06.resilience4j.projectservice.client.model.Employee;
 import pl.altkom.springcloud.lab06.resilience4j.projectservice.controller.model.Project;
 
-@FeignClient(value = "EMPLOYEE-SERVICE", fallback = EmployeeClientFallback.class)
+//@FeignClient(value = "EMPLOYEE-SERVICE", fallback = EmployeeClientFallback.class)
+@FeignClient(value = "EMPLOYEE-SERVICE")
 public interface EmployeeClient {
 
 //    @Retry(name = "EmployeeClientgetProjectEmployeesLong")
