@@ -3,8 +3,20 @@ server:
 spring:
   application:
     name: project-service
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connect-timeout: 5000
+            read-timeout: 4000
+      circuitbreaker:
+        enabled: true
+        alphanumeric-ids:
+          enabled: true
+
   redis:
-    connect-timeout:
+    connect-timeout: 1
 
 management:
   endpoints:
@@ -14,16 +26,7 @@ management:
   endpoint:
     health:
       show-details: always
-feign:
-  client:
-    config:
-      default:
-        connect-timeout: 5000
-        read-timeout: 4000
-  circuitbreaker:
-    enabled: true
-    alphanumeric-ids:
-      enabled: true
+
 resilience4j:
   timelimiter:
     instances:
