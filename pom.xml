@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>pl.altkom.springcloud.lab06.resilience4j</groupId>
-	<artifactId>project-service</artifactId>
+	<artifactId>lab06-project-service</artifactId>
 	<version>1.0.0</version>
 	<name>project-service</name>
 	<description>Project Service</description>
