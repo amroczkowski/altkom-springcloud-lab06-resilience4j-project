@@ -2,6 +2,7 @@ package pl.altkom.springcloud.lab06.resilience4j.projectservice.client;
 
 import java.util.List;
 
+import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,12 +11,12 @@ import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.altkom.springcloud.lab06.resilience4j.projectservice.client.model.Employee;
 
-@FeignClient(value = "EMPLOYEE-SERVICE", fallback = EmployeeClientFallback.class)
-//@FeignClient(value = "EMPLOYEE-SERVICE")
+//@FeignClient(value = "EMPLOYEE-SERVICE", fallback = EmployeeClientFallback.class)
+@FeignClient(value = "EMPLOYEE-SERVICE")
 public interface EmployeeClient {
 
-    @CircuitBreaker(name = "EmployeeClientCircuitBreaker")
-//    @Retry(name = "EmployeeClientCircuitBreaker")
+//    @CircuitBreaker(name = "EmployeeClientCircuitBreaker")
+    @Retry(name = "EmployeeClientRetrier")
     @GetMapping("/employee/project/{projectId}")
     List<Employee> getProjectEmployees(@PathVariable("projectId") final Long projectId,
                                        @RequestParam("sleep") final boolean sleep);

@@ -10,8 +10,8 @@ spring:
       client:
         config:
           default:
-            connect-timeout: 5000
-            read-timeout: 30000
+            connect-timeout: 1000
+            read-timeout: 3000
 
 management:
   endpoints:
@@ -25,6 +25,6 @@ management:
 resilience4j:
   retry:
     instances:
-      EmployeeClientgetProjectEmployeesLong:
-        max-retry-attempts: 3
+      EmployeeClientRetrier:
+        max-attempts: 2 #2 ~7s, 3 ~11s
         wait-duration: 1s
