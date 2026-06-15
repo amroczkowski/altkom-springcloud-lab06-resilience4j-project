@@ -3,8 +3,9 @@ server:
 spring:
   application:
     name: project-service
-  redis:
-    connect-timeout:
+  data:
+    redis:
+      connect-timeout:
   cloud:
     openfeign:
       client:

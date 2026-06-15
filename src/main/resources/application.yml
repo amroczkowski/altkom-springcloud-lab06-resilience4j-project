@@ -10,8 +10,9 @@ spring:
           default:
             connect-timeout: 5000
             read-timeout: 30000
-  redis:
-    connect-timeout:
+  data:
+    redis:
+      connect-timeout:
 
 management:
   endpoints:

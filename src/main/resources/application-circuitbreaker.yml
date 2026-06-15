@@ -14,9 +14,9 @@ spring:
         enabled: true
         alphanumeric-ids:
           enabled: true
-
-  redis:
-    connect-timeout: 1
+  data:
+    redis:
+      connect-timeout: 1
 
 management:
   endpoints:
