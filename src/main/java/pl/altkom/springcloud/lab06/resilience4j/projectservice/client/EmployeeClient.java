@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.altkom.springcloud.lab06.resilience4j.projectservice.client.model.Employee;
 
 @FeignClient(value = "EMPLOYEE-SERVICE", fallback = EmployeeClientFallback.class)
@@ -16,7 +17,8 @@ public interface EmployeeClient {
     @CircuitBreaker(name = "EmployeeClientgetProjectEmployeesLong")
 //    @Retry(name = "EmployeeClientgetProjectEmployeesLong")
     @GetMapping("/employee/project/{projectId}")
-    List<Employee> getProjectEmployees(@PathVariable("projectId") final Long projectId);
+    List<Employee> getProjectEmployees(@PathVariable("projectId") final Long projectId,
+                                       @RequestParam("sleep") final boolean sleep);
 
     @GetMapping("/employee")
     List<Employee> getEmployees();

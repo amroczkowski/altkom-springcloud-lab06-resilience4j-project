@@ -6,9 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import pl.altkom.springcloud.lab06.resilience4j.projectservice.client.EmployeeClient;
 import pl.altkom.springcloud.lab06.resilience4j.projectservice.controller.mapper.RequestMapper;
 import pl.altkom.springcloud.lab06.resilience4j.projectservice.controller.mapper.ResponseMapper;
@@ -30,10 +28,10 @@ public class ProjectService {
         return ResponseMapper.map(projectRepository.findAll(), employees);
     }
 
-    public Project getProject(final Long projectId) {
+    public Project getProject(final Long projectId, boolean sleep) {
         final pl.altkom.springcloud.lab06.resilience4j.projectservice.repository.model.Project project = projectRepository.findById(projectId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        final List<Employee> employees = pl.altkom.springcloud.lab06.resilience4j.projectservice.client.mapper.ResponseMapper.map(employeeClient.getProjectEmployees(project.getId()));
+        final List<Employee> employees = pl.altkom.springcloud.lab06.resilience4j.projectservice.client.mapper.ResponseMapper.map(employeeClient.getProjectEmployees(project.getId(), sleep));
         return ResponseMapper.map(project, employees);
     }
 
@@ -50,7 +48,7 @@ public class ProjectService {
         final pl.altkom.springcloud.lab06.resilience4j.projectservice.repository.model.Project modifiedProject = projectRepository
                 .save(RequestMapper.bind(request, sourceProject));
         final List<Employee> employees = pl.altkom.springcloud.lab06.resilience4j.projectservice.client.mapper.ResponseMapper
-                .map(employeeClient.getProjectEmployees(modifiedProject.getId()));
+                .map(employeeClient.getProjectEmployees(modifiedProject.getId(), false));
         return ResponseMapper.map(modifiedProject, employees);
     }
 }

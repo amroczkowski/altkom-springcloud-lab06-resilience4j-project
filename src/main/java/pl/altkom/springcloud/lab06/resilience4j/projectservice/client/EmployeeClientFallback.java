@@ -10,7 +10,7 @@ import pl.altkom.springcloud.lab06.resilience4j.projectservice.client.model.Empl
 public class EmployeeClientFallback implements EmployeeClient {
 
     @Override
-    public List<Employee> getProjectEmployees(final Long projectId) {
+    public List<Employee> getProjectEmployees(final Long projectId, final boolean sleep) {
         throw new IllegalStateException("Project employee didn't responde");
     }
 
