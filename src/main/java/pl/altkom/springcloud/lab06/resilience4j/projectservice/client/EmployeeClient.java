@@ -14,8 +14,8 @@ import pl.altkom.springcloud.lab06.resilience4j.projectservice.client.model.Empl
 //@FeignClient(value = "EMPLOYEE-SERVICE")
 public interface EmployeeClient {
 
-    @CircuitBreaker(name = "EmployeeClientgetProjectEmployeesLong")
-//    @Retry(name = "EmployeeClientgetProjectEmployeesLong")
+    @CircuitBreaker(name = "EmployeeClientCircuitBreaker")
+//    @Retry(name = "EmployeeClientCircuitBreaker")
     @GetMapping("/employee/project/{projectId}")
     List<Employee> getProjectEmployees(@PathVariable("projectId") final Long projectId,
                                        @RequestParam("sleep") final boolean sleep);
